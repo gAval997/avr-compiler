@@ -1,0 +1,16 @@
+{
+	"Linux": {
+		"c_to_obj": "./avr8-gnu-toolchain-linux/bin/avr-gcc -g -Os -mmcu={MICROCONTROLLER} -c {SOURCEFILEPATH}{SOURCEFILE}.c",
+		"obj_to_elf": "./avr8-gnu-toolchain-linux/bin/avr-gcc -g -mmcu={MICROCONTROLLER} -o {SOURCEFILEPATH}{SOURCEFILE}.elf {SOURCEFILEPATH}{SOURCEFILE}.o",
+		"elf_to_hex": "./avr8-gnu-toolchain-linux/bin/avr-objcopy -j .text -j .data -O ihex {SOURCEFILEPATH}{SOURCEFILE}.elf {SOURCEFILEPATH}{OUTPUTFILE}.hex",
+		"get_filesize": "./avr8-gnu-toolchain-linux/bin/avr-size --format=avr --mcu={MICROCONTROLLER} {SOURCEFILEPATH}{SOURCEFILE}.elf",
+		"mv_obj_to_srcpath": "mv ./{SOURCEFILE}.o {SOURCEFILEPATH}"
+	},
+	"Windows": {
+		"c_to_obj": "./avr8-gnu-toolchain-win32/bin/avr-gcc.exe -g -Os -mmcu={MICROCONTROLLER} -c {SOURCEFILEPATH}{SOURCEFILE}.c",
+		"obj_to_elf": "./avr8-gnu-toolchain-win32/bin/avr-gcc.exe -g -mmcu={MICROCONTROLLER} -o {SOURCEFILEPATH}{SOURCEFILE}.elf {SOURCEFILEPATH}{SOURCEFILE}.o",
+		"elf_to_hex": "./avr8-gnu-toolchain-win32/bin/avr-objcopy.exe -j .text -j .data -O ihex {SOURCEFILEPATH}{SOURCEFILE}.elf {SOURCEFILEPATH}{OUTPUTFILE}.hex",
+		"get_filesize": "./avr8-gnu-toolchain-win32/bin/avr-size.exe --format=avr --mcu={MICROCONTROLLER} {SOURCEFILEPATH}{SOURCEFILE}.elf",
+		"mv_obj_to_srcpath": "move {SOURCEFILE}.o {SOURCEFILEPATH}"
+	}
+}
