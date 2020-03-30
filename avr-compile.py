@@ -15,7 +15,7 @@ def get_instruction_set(operating_system):
 	instruction_set = {}
 
 	try:
-		with open("instruction_set.jso") as fp:
+		with open("instruction_set.json") as fp:
 			lines = fp.read()
 			instructions = json.loads(lines)
 
@@ -63,7 +63,7 @@ def do_compile(sourceFile, microcontroller, outputFile):
 	if len(instruction_set.items()) == 0:
 		instruction_set = fallback_instruction_set(platform.system())
 
-	print(
+	os.system(
 		instruction_set["c_to_obj"].format(
 			MICROCONTROLLER=microcontroller,
 			SOURCEFILEPATH=source_file_path,
@@ -71,14 +71,14 @@ def do_compile(sourceFile, microcontroller, outputFile):
 		)
 	)
 
-	print(
+	os.system(
 		instruction_set["mv_obj_to_srcpath"].format(
 			SOURCEFILE=sourceFile,
 			SOURCEFILEPATH=source_file_path
 		)
 	)
 
-	print(
+	os.system(
 		instruction_set["obj_to_elf"].format(
 			MICROCONTROLLER=microcontroller,
 			SOURCEFILEPATH=source_file_path,
@@ -86,7 +86,7 @@ def do_compile(sourceFile, microcontroller, outputFile):
 		)
 	)
 
-	print(
+	os.system(
 		instruction_set["elf_to_hex"].format(
 			SOURCEFILE=sourceFile,
 			SOURCEFILEPATH=source_file_path,
@@ -94,7 +94,7 @@ def do_compile(sourceFile, microcontroller, outputFile):
 		)
 	)
 
-	print(
+	os.system(
 		instruction_set["get_filesize"].format(
 			MICROCONTROLLER=microcontroller,
 			SOURCEFILEPATH=source_file_path,
